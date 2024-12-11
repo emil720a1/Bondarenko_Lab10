@@ -1,0 +1,19 @@
+#include <iostream>
+#include <regex>
+#include <string>
+using namespace std;
+
+int main() {
+    string text = " http://example.com і https://www.google.com";
+    regex pattern("https?://\\S+");
+
+    std::smatch matches;
+    while (std::regex_search(text, matches, pattern)) {
+        for (auto match : matches) {
+            std::cout << match << std::endl;
+        }
+        text = matches.suffix().str();
+    }
+
+    return 0;
+}
